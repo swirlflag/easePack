@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+#hi {
+    width: 100px;
+    height: 100px;
+    background-color: #d3d;
+    position: relative;
+}
+</style>
+</head>
+<body>
+
+<div id="hi"></div>
+
+<script src="dx_LoopManager.js"></script>
+<script src="dx_easePack.js"></script>
+
+<script>
+const loopManager = new DX_loopManager();
+const dxe = new DX_easeDOM();
+
+loopManager.register(dxe);
+
+const hi = document.getElementById('hi');
+
+dxe.addEase({
+    duration : 1000,
+    ease : 'outCubic',
+    frameFunction : (eo) => {
+        console.log(eo.updateProgress, eo.updateValue)
+    }
+});
+
+dxe.to(hi , 2000 , 'inOutCubic' ,  {top: '100px'});
+
+
+
+loopManager.play();
+
+
+</script>
+
+</body>
+</html>
